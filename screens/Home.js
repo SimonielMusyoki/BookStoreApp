@@ -7,12 +7,11 @@ import {
     StyleSheet,
     Platform,
     FlatList,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { color } from 'react-native-reanimated';
 
-import { icons,COLORS, FONTS, SIZES, images} from '../constants'
+import { icons,COLORS, FONTS, SIZES} from '../constants'
 import { profileData, myBooksData, categoriesData } from "../data/booksData";
 
 const Home = ({navigation}) => {
@@ -255,7 +254,12 @@ const Home = ({navigation}) => {
                     marginHorizontal: SIZES.padding,
                     marginVertical: SIZES.padding * 0.3,
                     flexDirection: 'row'
-                }}>
+                }}
+                onPress={()=> navigation.navigate("BookDetail", {
+                    item: item
+                })}
+                
+                >
                     <View>
                         <Image
                             source={item.bookCover}
