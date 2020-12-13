@@ -1,11 +1,11 @@
 import React from 'react'
-import {
-  View,
-  Text
-} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { FONTS } from './constants'
+import { NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import { BookDetail } from './screens'
+import Tabs from './navigation/tabs'
 
 const App = () => {
 
@@ -21,10 +21,17 @@ const App = () => {
     )
   }
 
+  const Stack = createStackNavigator();
+
   return(
-    <View>
-      <Text style={{...FONTS.h1}}>Hey There</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen name="Home" component={Tabs} />
+        <Stack.Screen name="BookDetail" component={BookDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
